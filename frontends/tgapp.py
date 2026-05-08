@@ -1,4 +1,4 @@
-import os, sys, re, threading, asyncio, queue as Q, time, random, uuid
+import os, sys, re, threading, asyncio, queue as Q, time, random, uuid, traceback
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 _TEMP_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'temp')
 from agentmain import GeneraticAgent
@@ -913,5 +913,5 @@ if __name__ == '__main__':
             app.run_polling(drop_pending_updates=True, poll_interval=1.0, timeout=30)
         except Exception as e:
             print(f"[{time.strftime('%m-%d %H:%M')}] polling crashed: {e}", flush=True)
+            traceback.print_exc()
             time.sleep(10)
-            asyncio.set_event_loop(asyncio.new_event_loop())
